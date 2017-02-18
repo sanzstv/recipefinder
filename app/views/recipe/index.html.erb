@@ -1,0 +1,30 @@
+<h1 class = "recipelist">Showing recipes with search term '<%= @search_query %>'</h1>
+<% if @recipes.nil? %>
+<p> Sorry, no recipes found.</p>
+<% else %>
+<table class = "recipetable">
+<tr>
+	<th>Image
+	</th>
+	<th>Name
+	</th>
+	<th>Description
+	</th>
+</tr>
+	<% @recipes.each do |recipe|%>
+	<tr>
+	<td class="recipeimg"> 
+	<%= link_to recipe["source_url"] do %>
+	<%=image_tag(recipe["image_url"], size: "100")%>
+	<% end %>
+	</td>
+	<td class= "recipename"><%= link_to sanitize(recipe["title"]), recipe["source_url"] %>
+	</td>
+	<td class = "recipe"><%= recipe["social_rank"]%>
+	</td>
+	</tr>
+	<% end %>
+</table>
+	<% end %>
+
+	<p>Powered By Food2Fork.com</p>
